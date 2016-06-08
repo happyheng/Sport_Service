@@ -20,14 +20,15 @@ import com.happyheng.service.LoginService;
  * @author liuheng
  */
 @WebServlet("/Login")
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 7245361420327420429L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String userName = req.getParameter("uname");
-		String passWord = req.getParameter("upwd");
+		
+		String userName = requestJson.getString("uname");
+		String passWord = requestJson.getString("upwd");
 
 		System.out.println("请求的userName为" + userName + "\n请求的passWord为" + passWord);
 
@@ -45,6 +46,8 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		String result = JSON.toJSONString(map);
+		System.out.println("结果为"+result);
+		
 		PrintWriter printWriter = resp.getWriter();
 		printWriter.write(result);
 		printWriter.close();

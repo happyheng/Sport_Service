@@ -8,6 +8,7 @@ import com.happyheng.dao.impl.UserDaoImplement;
 import com.happyheng.entity.result.LoginResult;
 import com.happyheng.utils.ConnectionFactory;
 
+
 public class LoginService {
 	private UserDao mUserDao = new UserDaoImplement();
 	
