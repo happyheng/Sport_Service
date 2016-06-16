@@ -38,7 +38,7 @@ public class LoginService {
 			
 			//3、设置相应的token
 			long currentTime  = System.currentTimeMillis();
-			String token = userId+""+currentTime;
+			String token = userId+"_"+currentTime;
 			
 			mUserDao.updateToken(connection, userId, token);
 			result.setCode(0);

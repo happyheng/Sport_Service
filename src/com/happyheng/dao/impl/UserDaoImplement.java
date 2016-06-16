@@ -67,4 +67,19 @@ public class UserDaoImplement extends BaseDaoImplement implements UserDao {
 		statement.execute();
 	}
 
+	@Override
+	public int getUserId(Connection connection, String token) throws SQLException {
+		PreparedStatement statement = connection.prepareCall("select * from tal_user where token = ?");
+		
+		statement.setString(1, token);
+		statement.executeQuery();
+		
+		ResultSet set = statement.executeQuery();
+		if (set.next()) {
+			return set.getInt("id");
+		} else {
+			return 0;
+		}
+	}
+
 }

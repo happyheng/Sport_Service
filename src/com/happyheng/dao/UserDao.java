@@ -42,5 +42,16 @@ public interface UserDao {
 	 * @throws SQLException
 	 */
 	public void updateToken(Connection connection, int userId, String token) throws SQLException;
+	
+	/**
+	 * 根据token获取到用户的id，如果没有，返回0
+	 * @param connection
+	 * @param token
+	 * @throws SQLException
+	 */
+	public int getUserId(Connection connection,  String token) throws SQLException;
+	
+	
+	
 
 }
