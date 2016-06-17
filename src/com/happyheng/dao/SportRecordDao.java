@@ -13,7 +13,7 @@ public interface SportRecordDao {
 	/**
 	 * 将userId插入到用户运动表中，获取自增的运动id
 	 * @param connection
-	 * @param userId
+	 * @param userId  如果获取失败，返回0
 	 * @return
 	 * @throws SQLException
 	 */

@@ -43,8 +43,6 @@ public class ConnectionFactory {
 		dburl = properties.getProperty("dburl");
 		user = properties.getProperty("user");
 		password = properties.getProperty("password");
-		
-		
 	}
 	
 	//获取ConnectionFactory单例
