@@ -32,13 +32,12 @@ public class SportRecordDaoImplement extends BaseDaoImplement implements SportRe
 	@Override
 	public void insert(Connection connection, SportRecord record) throws SQLException {
 		PreparedStatement statement = connection
-				.prepareCall("insert into tal_sport_message (sportId,posx,posy,stime,location) values(?)");
+				.prepareCall("insert into tal_sport_message (sportId,posx,posy,location) values(?,?,?,?)");
 
 		statement.setInt(1, record.getSportId());
 		statement.setFloat(2, record.getPosX());
 		statement.setFloat(3, record.getPosY());
-		statement.setLong(4, record.getTime());
-		statement.setString(5, record.getLocation());
+		statement.setString(4, record.getLocation());
 
 		statement.execute();
 	}

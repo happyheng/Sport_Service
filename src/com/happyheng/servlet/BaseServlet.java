@@ -22,6 +22,7 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class BaseServlet extends HttpServlet {
 	
+	
 	//请求的Json
 	protected JSONObject requestJson;
 	
