@@ -15,7 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.happyheng.service.RegisterService;
 
 @WebServlet("/Register")
-public class RegisterServlet extends HttpServlet {
+public class RegisterServlet extends BaseServlet {
 
 	private static final long serialVersionUID = -7216554493323498738L;
 
@@ -24,9 +24,9 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String userName = req.getParameter("uname");
-		String passWord = req.getParameter("upwd");
-		String nickName = req.getParameter("nkname");
+		String userName = requestJson.getString("uname");
+		String passWord = requestJson.getString("upwd");
+		String nickName = requestJson.getString("nkname");
 
 		System.out.println("请求的userName为" + userName + "\n请求的passWord为" + passWord + "\nnickName为" + nickName);
 
