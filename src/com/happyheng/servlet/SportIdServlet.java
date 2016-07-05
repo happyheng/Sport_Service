@@ -30,7 +30,7 @@ public class SportIdServlet extends BaseServlet {
 		if (result.getCode() == BaseService.RESULT_CODE_SUCCESS) {
 			responseMap.put("id", result.getSportId());	
 		}
-		responseMap.put("return", result.getCode());
+		responseMap.put(RESULT_KEY, result.getCode());
 		
 		String JsonResult = JSON.toJSONString(responseMap);
 		System.out.println("结果为"+JsonResult);

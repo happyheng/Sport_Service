@@ -44,12 +44,12 @@ public class SportRecordServlet extends BaseServlet {
 			if (result.getCode() == 0) {
 				responseMap.put("id", result.getSportId());	
 			}
-			responseMap.put("return", result.getCode());
+			responseMap.put(RESULT_KEY, result.getCode());
 			
 		} else {
 			int resultCode = service.record(sportId, posx, posy, location);
 			
-			responseMap.put("return", resultCode);
+			responseMap.put(RESULT_KEY, resultCode);
 		}
 		
 		String result = JSON.toJSONString(responseMap);

@@ -18,6 +18,7 @@ import com.happyheng.secret.ServletSecret;
  */
 public class BaseServlet extends HttpServlet {
 	
+	protected static final String RESULT_KEY = "result";
 	
 	//请求的Json
 	protected JSONObject requestJson;

@@ -36,7 +36,7 @@ public class LoginServlet extends BaseServlet {
 		LoginResult loginResult = service.login(userName, passWord);
 
 		Map<String, Object> map = new HashMap<>();
-		map.put("result", loginResult.getCode());
+		map.put(RESULT_KEY, loginResult.getCode());
 		//如果成功，还需要加上token
 		if (loginResult.getCode() == 0) {
 			Map<String, Object> dataMap = new HashMap<>();

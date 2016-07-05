@@ -36,7 +36,7 @@ public class RegisterServlet extends BaseServlet {
 		
 		//将结果序列化成json
 		Map<String, Object> map = new HashMap<>();
-		map.put("result", code);
+		map.put(RESULT_KEY, code);
 		String result = JSON.toJSONString(map);
 		
 		PrintWriter printWriter = resp.getWriter();
