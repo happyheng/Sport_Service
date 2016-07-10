@@ -27,7 +27,6 @@ public class SportRecordServlet extends BaseServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String userKey = requestJson.getString("ukey");
 		int sportId = requestJson.getIntValue("id");
 		float posx = requestJson.getFloatValue("posx");
 		float posy = requestJson.getFloatValue("posy");
@@ -37,20 +36,9 @@ public class SportRecordServlet extends BaseServlet {
 		
 		Map<String, Object> responseMap = new HashMap<>();
 		//不为空，则说明是来插入信息并获取sportId的
-		if (!TextUtils.isEmpty(userKey)) {
-			SportRecordResult result = service.record(userKey, posx, posy, location);
-			
-			//说明插入成功
-			if (result.getCode() == 0) {
-				responseMap.put("id", result.getSportId());	
-			}
-			responseMap.put(RESULT_KEY, result.getCode());
-			
-		} else {
-			int resultCode = service.record(sportId, posx, posy, location);
-			
-			responseMap.put(RESULT_KEY, resultCode);
-		}
+		int resultCode = service.record(sportId, posx, posy, location);	
+		responseMap.put(RESULT_KEY, resultCode);
+	
 		
 		String result = JSON.toJSONString(responseMap);
 		System.out.println("结果为"+result);
