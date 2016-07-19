@@ -27,6 +27,9 @@ public class NewsServlet extends BaseServlet {
 		NewsResult result = service.getNews(begin, id, count);
 		
 		String resultJson = JSON.toJSONString(result);
+		
+		resp.setContentType("text/html;charset=utf-8");
+		resp.setCharacterEncoding("utf-8");
 		PrintWriter printWriter = resp.getWriter();
 		printWriter.write(resultJson);
 		printWriter.close();
