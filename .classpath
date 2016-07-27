@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.36-bin.jar"/>
 	<classpathentry kind="lib" path="/Users/liuheng/javaWeb/Tomcat/apache-tomcat-8.0.24/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fastjson-1.2.9.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jedis-2.9.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
