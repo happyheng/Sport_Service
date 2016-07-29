@@ -29,6 +29,11 @@ public class News extends IdEntity {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	@Override
+	public String toString() {
+		return "News [name=" + name + ", simplecontent=" + simplecontent + ", thumbnail=" + thumbnail + ", url=" + url
+				+ "]";
+	}
 	
 	
 }

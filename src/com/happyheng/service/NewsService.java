@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.happyheng.dao.NewsDao;
 import com.happyheng.dao.impl.NewsDaoImplement;
+import com.happyheng.dao.impl.NewsDaoRedisImplement;
 import com.happyheng.entity.News;
 import com.happyheng.entity.result.NewsResult;
 import com.happyheng.utils.ConnectionFactory;
@@ -14,7 +15,7 @@ public class NewsService extends BaseService {
 
 	public NewsResult getNews(int begin, int id, int count) {
 		NewsResult result = new NewsResult();
-		NewsDao newsDao = new NewsDaoImplement();
+		NewsDao newsDao = new NewsDaoRedisImplement();
 
 		Connection connection = ConnectionFactory.getInstance().makeConnection();
 

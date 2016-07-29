@@ -18,7 +18,13 @@ public class NewsResult {
 	public List<News> getData() {
 		return data;
 	}
+	
 	public void setData(List<News> data) {
 		this.data = data;
+	}
+	
+	@Override
+	public String toString() {
+		return "NewsResult [code=" + code + ", data=" + data + "]";
 	}
 }

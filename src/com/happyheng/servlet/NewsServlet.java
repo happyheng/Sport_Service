@@ -15,7 +15,6 @@ import com.happyheng.service.NewsService;
 @WebServlet("/News")
 public class NewsServlet extends BaseServlet {
 	
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
