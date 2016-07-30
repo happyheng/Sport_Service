@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.happyheng.dao.NewsDao;
-import com.happyheng.dao.impl.NewsDaoImplement;
 import com.happyheng.dao.impl.NewsDaoRedisImplement;
 import com.happyheng.entity.News;
 import com.happyheng.entity.result.NewsResult;
