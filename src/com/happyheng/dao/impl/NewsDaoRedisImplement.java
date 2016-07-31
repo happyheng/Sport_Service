@@ -18,7 +18,9 @@ public class NewsDaoRedisImplement implements NewsDao {
 	// 默认缓存的条数
 	public static final int CACHE_NUM = 100;
 	// 缓存的有序列表Key
-	public static final String KEY_LIST = "article_list";
+	public static final String KEY_LIST = "article:list";
+	// 缓存的Key的时间
+	public static final int CACHE_TIME = 30;
 
 	private Jedis mJedis;
 
@@ -52,8 +54,10 @@ public class NewsDaoRedisImplement implements NewsDao {
 		boolean isExist = mJedis.exists(KEY_LIST);
 
 		if (!isExist) {
-			// 2、如果没有，从数据库中取出，并缓存至Redis中
+			System.out.println("Redis中没有数据，将数据库数据读入缓存中");
+			// 2、如果没有，从数据库中取出，并缓存至Redis中，并设置其缓存时间
 			getDataFromRedis(connection);
+			mJedis.expire(KEY_LIST, CACHE_TIME);
 		} else {
 			System.out.println("Redis中存在数据");
 		}
