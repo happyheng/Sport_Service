@@ -19,7 +19,7 @@ import com.happyheng.service.SportIdService;
 public class SportIdServlet extends BaseServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String userKey = requestJson.getString("ukey");
+		String userKey = (String) req.getAttribute("ukey");
 		
 		//得到返回的结果
 		SportIdService service = new SportIdService();

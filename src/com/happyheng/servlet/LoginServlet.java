@@ -27,8 +27,8 @@ public class LoginServlet extends BaseServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String userName = requestJson.getString("uname");
-		String passWord = requestJson.getString("upwd");
+		String userName = (String) req.getAttribute("uname");
+		String passWord = (String) req.getAttribute("upwd");
 
 		System.out.println("请求的userName为" + userName + "\n请求的passWord为" + passWord);
 

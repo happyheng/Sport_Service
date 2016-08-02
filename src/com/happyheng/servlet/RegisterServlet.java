@@ -24,9 +24,9 @@ public class RegisterServlet extends BaseServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String userName = requestJson.getString("uname");
-		String passWord = requestJson.getString("upwd");
-		String nickName = requestJson.getString("nkname");
+		String userName = (String) req.getAttribute("uname");
+		String passWord = (String) req.getAttribute("upwd");
+		String nickName = (String) req.getAttribute("nkname");
 
 		System.out.println("请求的userName为" + userName + "\n请求的passWord为" + passWord + "\nnickName为" + nickName);
 

@@ -18,9 +18,9 @@ public class NewsServlet extends BaseServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int begin = requestJson.getIntValue("begin");
-		int id = requestJson.getIntValue("id");
-		int count = requestJson.getIntValue("count");
+		int begin = (int) req.getAttribute("begin");
+		int id = (int) req.getAttribute("id");
+		int count = (int) req.getAttribute("count");
 		
 		NewsService service = new NewsService();
 		NewsResult result = service.getNews(begin, id, count);

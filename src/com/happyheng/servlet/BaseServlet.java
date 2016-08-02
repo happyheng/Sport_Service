@@ -21,17 +21,17 @@ public class BaseServlet extends HttpServlet {
 	protected static final String RESULT_KEY = "result";
 	
 	//请求的Json
-	protected JSONObject requestJson;
+	//protected JSONObject requestJson;
 	//解密的类
 	private ServletSecret mSecret;
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String securityString = req.getParameter("s");
-		System.out.println("获取的加密String为" + securityString);
-		
-		requestJson = JSON.parseObject(URLDecoder.decode(securityString, "UTF8"));
+//		String securityString = req.getParameter("s");
+//		System.out.println("获取的加密String为" + securityString);
+//		
+//		requestJson = JSON.parseObject(URLDecoder.decode(securityString, "UTF8"));
 		
 		super.service(req, resp);
 	}

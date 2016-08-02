@@ -27,10 +27,10 @@ public class SportRecordServlet extends BaseServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int sportId = requestJson.getIntValue("id");
-		float posx = requestJson.getFloatValue("posx");
-		float posy = requestJson.getFloatValue("posy");
-		String location = requestJson.getString("location");
+		int sportId = (int) req.getAttribute("id");
+		float posx = (float) req.getAttribute("posx");
+		float posy = (float) req.getAttribute("posy");
+		String location = (String) req.getAttribute("location");
 		
 		SportRecordService service = new SportRecordService();
 		
