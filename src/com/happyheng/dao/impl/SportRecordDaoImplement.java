@@ -19,14 +19,22 @@ public class SportRecordDaoImplement extends BaseDaoImplement implements SportRe
 		statement.setInt(1, userId);
 		statement.execute();
 
-		PreparedStatement quertStatement = connection.prepareCall("select LAST_INSERT_ID()");
-
-		ResultSet set = quertStatement.executeQuery();
+		ResultSet set = statement.getGeneratedKeys();
 		if (set.next()) {
-			return set.getInt("LAST_INSERT_ID()");
+			return set.getInt(1);
 		} else {
 			return 0;
 		}
+
+		// PreparedStatement quertStatement = connection.prepareCall("select
+		// LAST_INSERT_ID()");
+		//
+		// ResultSet set = quertStatement.executeQuery();
+		// if (set.next()) {
+		// return set.getInt("LAST_INSERT_ID()");
+		// } else {
+		// return 0;
+		// }
 	}
 
 	@Override
