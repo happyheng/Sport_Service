@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.happyheng.secret.ServletSecret;
+import com.happyheng.secret.VerifySecret;
 
 /**
  * 所有HttpServlet的基类，会把请求中的加密字符串取出来并进行解密 (当前还尚未解密)
@@ -23,7 +23,7 @@ public class BaseServlet extends HttpServlet {
 	//请求的Json
 	//protected JSONObject requestJson;
 	//解密的类
-	private ServletSecret mSecret;
+	private VerifySecret mSecret;
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
