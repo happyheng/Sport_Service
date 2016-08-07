@@ -12,12 +12,12 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 	<filter>
 		<filter-name>characterFilter</filter-name>
 		<filter-class>com.happyheng.filter.CharacterFilter</filter-class>
 	</filter>
-	
+
 	<filter-mapping>
 		<filter-name>characterFilter</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -32,5 +32,16 @@
 		<filter-name>verifyFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+	<!-- 此为Spring MVC的配置 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
 
 </web-app>
