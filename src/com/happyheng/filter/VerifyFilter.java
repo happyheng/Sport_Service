@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.happyheng.secret.VerifySecret;
 import com.happyheng.secret.impl.AESSercret;
+import com.happyheng.utils.HexUtils;
 import com.happyheng.utils.PropertiesUtils;
 
 public class VerifyFilter implements Filter {
@@ -33,12 +34,8 @@ public class VerifyFilter implements Filter {
 
 		PropertiesUtils propertiesUtils = new PropertiesUtils("key.properties");
 		String hexKey = propertiesUtils.getProperties("key");
-		try {
-			key = Hex.decodeHex(hexKey.toCharArray());
-		} catch (DecoderException e) {
-			e.printStackTrace();
-		}
-
+		key = HexUtils.hexStringToBytes(hexKey);
+		
 		secret = new AESSercret();
 	}
 

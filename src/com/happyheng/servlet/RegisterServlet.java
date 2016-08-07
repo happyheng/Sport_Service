@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,7 +29,7 @@ public class RegisterServlet extends BaseServlet {
 
 		System.out.println("请求的userName为" + userName + "\n请求的passWord为" + passWord + "\nnickName为" + nickName);
 
-		RegisterService service = new RegisterService();
+		RegisterService service = (RegisterService)context.getBean("registerService");
 		int code = service.register(userName, passWord, nickName);
 		System.out.println("插入的code为" + code);
 		

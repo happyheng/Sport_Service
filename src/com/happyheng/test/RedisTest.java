@@ -2,7 +2,7 @@ package com.happyheng.test;
 
 import com.happyheng.entity.News;
 import com.happyheng.entity.result.NewsResult;
-import com.happyheng.service.NewsService;
+import com.happyheng.service.impl.NewsServiceImpl;
 import com.happyheng.utils.Redis;
 
 import redis.clients.jedis.Jedis;
@@ -20,7 +20,7 @@ public class RedisTest {
 		// String result = jedis.get("bar");
 		// System.out.println("存储的结果为"+result);
 
-		NewsService service = new NewsService();
+		NewsServiceImpl service = new NewsServiceImpl();
 		NewsResult result = service.getNews(1, 0, 10);
 		
 		for (News news : result.getData()) {

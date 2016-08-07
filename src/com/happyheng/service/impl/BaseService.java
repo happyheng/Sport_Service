@@ -1,4 +1,4 @@
-package com.happyheng.service;
+package com.happyheng.service.impl;
 
 /**
  * 逻辑处理类的基类

@@ -1,4 +1,4 @@
-package com.happyheng.service;
+package com.happyheng.service.impl;
 
 import com.happyheng.cache.NewsCountCache;
 
@@ -7,7 +7,7 @@ import com.happyheng.cache.NewsCountCache;
  * @author liuheng
  *
  */
-public class NewsCountService extends BaseService {
+public class NewsCountServiceImpl extends BaseService {
 	
 	/**
 	 * 得到对应文章的阅读数并将Count+1

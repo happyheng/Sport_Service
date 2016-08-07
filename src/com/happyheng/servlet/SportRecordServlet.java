@@ -2,6 +2,7 @@ package com.happyheng.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,9 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
-import com.happyheng.entity.result.SportRecordResult;
 import com.happyheng.service.SportRecordService;
-import com.happyheng.utils.TextUtils;
 
 @WebServlet("/Record")
 public class SportRecordServlet extends BaseServlet {
@@ -28,11 +27,11 @@ public class SportRecordServlet extends BaseServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		int sportId = (int) req.getAttribute("id");
-		float posx = (float) req.getAttribute("posx");
-		float posy = (float) req.getAttribute("posy");
+		float posx = ((BigDecimal) req.getAttribute("posx")).floatValue();
+		float posy =((BigDecimal) req.getAttribute("posy")).floatValue();
 		String location = (String) req.getAttribute("location");
 		
-		SportRecordService service = new SportRecordService();
+		SportRecordService service = (SportRecordService)context.getBean("sportRecordService");
 		
 		Map<String, Object> responseMap = new HashMap<>();
 		//不为空，则说明是来插入信息并获取sportId的

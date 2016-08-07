@@ -12,17 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 import com.happyheng.entity.result.SportRecordResult;
-import com.happyheng.service.BaseService;
 import com.happyheng.service.SportIdService;
+import com.happyheng.service.impl.BaseService;
+import com.happyheng.service.impl.SportIdServiceImpl;
 
 @WebServlet("/SportId")
-public class SportIdServlet extends BaseServlet {
+public class SportIdServlet extends BaseServlet{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5239059095796134366L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String userKey = (String) req.getAttribute("ukey");
 		
 		//得到返回的结果
-		SportIdService service = new SportIdService();
+		SportIdService service = (SportIdService)context.getBean("sportIdService");
 		SportRecordResult result = service.getSportId(userKey);
 		
 		Map<String, Object> responseMap = new HashMap<>();
