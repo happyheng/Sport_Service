@@ -6,9 +6,6 @@ public class User extends IdEntity {
 	private String nickname;
 	private String token;
 	
-	
-	
-	
 	public String getName() {
 		return name;
 	}
