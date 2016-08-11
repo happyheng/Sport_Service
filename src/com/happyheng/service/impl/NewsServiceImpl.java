@@ -25,15 +25,15 @@ public class NewsServiceImpl extends BaseService implements NewsService{
 	@Override
 	public NewsResult getNews(int begin, int id, int count) {
 		NewsResult result = new NewsResult();
-		Connection connection = ConnectionFactory.getInstance().makeConnection();
+		//Connection connection = ConnectionFactory.getInstance().makeConnection();
 
 		try {
 
 			List<News> news;
 			if (id != 0) {
-				news = newsDao.getNewsById(connection, id, count);
+				news = newsDao.getNewsById(id, count);
 			} else {
-				news = newsDao.getNewsByIndex(connection, begin, count);
+				news = newsDao.getNewsByIndex(begin, count);
 			}
 			
 			result.setCode(RESULT_CODE_SUCCESS);

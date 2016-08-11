@@ -3,12 +3,20 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
 	<!-- 配置bean -->
-	<bean id="userDaoFactory" class="com.happyheng.factory.UserDaoFactory"></bean>
-	<bean id="userDao" factory-bean="userDaoFactory" factory-method="getUserDao"/>
-	<bean id="recordDao" class="com.happyheng.dao.impl.SportRecordDaoImplement"></bean>
-	<bean id="redisNewsDao" class="com.happyheng.dao.impl.NewsDaoRedisImplement"></bean>
+	<bean id="daoFactory" class="com.happyheng.factory.DaoFactory"></bean>
+	<bean id="userDao" factory-bean="daoFactory" factory-method="getUserDao"/>
+	<bean id="recordDao" factory-bean="daoFactory" factory-method="getSportRecordDao"></bean>
+	<bean id="newsDao"  factory-bean="daoFactory" factory-method="getNewsDao" ></bean>
+	<bean id="countDao" factory-bean="daoFactory" factory-method="getNewsCountDao"></bean>
+	
+	<bean id="redisNewsDao" class="com.happyheng.dao.impl.NewsDaoRedisImplement">
+		<property name="newsDao" ref="newsDao"></property>
+	</bean>
+	
+	<bean id="newsCountCacheDao" class="com.happyheng.cache.NewsCountCache">
+		<property name="countDao" ref="countDao"></property>
+	</bean>
 
 	<bean id="loginService" class="com.happyheng.service.impl.LoginServiceImpl">
 		<property name="UserDao" ref="userDao"></property>
@@ -29,6 +37,10 @@
 
 	<bean id="newsService" class="com.happyheng.service.impl.NewsServiceImpl">
 		<property name="NewsDao" ref="redisNewsDao"></property>
+	</bean>
+	
+	<bean id="newsCountService" class="com.happyheng.service.impl.NewsCountServiceImpl">
+		<property name="cacheDao" ref="newsCountCacheDao"></property>
 	</bean>
 
 

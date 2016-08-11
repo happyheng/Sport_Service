@@ -6,8 +6,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.omg.CORBA.INTERNAL;
 
+import com.happyheng.entity.Sport;
 import com.happyheng.entity.SportRecord;
 
 public interface SportRecordDao {
@@ -19,7 +21,9 @@ public interface SportRecordDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int insertUserId(Connection connection,int userId) throws SQLException;
+	@Insert("insert into tal_sport (userid) values (#{userid})")
+	@SelectKey(statement = "select last_insert_id() as id", keyProperty = "id", before = false, resultType = long.class)
+	public Integer insertSport(Sport sport) throws SQLException;
 	
 
 	/**
@@ -30,7 +34,7 @@ public interface SportRecordDao {
 	 * @throws SQLException
 	 */
 	@Insert("insert into tal_sport_message (sportId,posx,posy,location) values(#{sportId},#{posX},#{posY},#{location})")
-	public void insert(Connection connection, SportRecord record) throws SQLException;
+	public void insert(SportRecord record) throws SQLException;
 
 	
 	/**
@@ -41,5 +45,5 @@ public interface SportRecordDao {
 	 * @throws SQLException
 	 */
 	@Select("select * from tal_sport_message where ")
-	public List<SportRecord> queryRecordList(Connection connection, int id) throws SQLException;
+	public List<SportRecord> queryRecordList(int id) throws SQLException;
 }

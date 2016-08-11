@@ -3,7 +3,7 @@ package com.happyheng.entity.result;
 public class SportRecordResult {
 	
 	private int code;
-	private int sportId;
+	private long sportId;
 	
 	public int getCode() {
 		return code;
@@ -11,10 +11,11 @@ public class SportRecordResult {
 	public void setCode(int code) {
 		this.code = code;
 	}
-	public int getSportId() {
+	public long getSportId() {
 		return sportId;
 	}
-	public void setSportId(int sportId) {
+	public void setSportId(long sportId) {
 		this.sportId = sportId;
 	}
+	
 }

@@ -36,9 +36,6 @@ public class SportRecordServiceImpl extends BaseService implements SportRecordSe
 	@Override
 	public int record(int sportId, float posx, float posy, String location) {
 
-		Connection connection = null;
-		connection = ConnectionFactory.getInstance().makeConnection();
-
 		try {
 			SportRecord record = new SportRecord();
 			record.setSportId(sportId);
@@ -47,14 +44,14 @@ public class SportRecordServiceImpl extends BaseService implements SportRecordSe
 			record.setLocation(location);
 
 			// 将运动信息写入
-			recordDao.insert(connection, record);
+			recordDao.insert(record);
 			return 0;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return 100;
+			
 		}
-
+		return 100;
 	}
 
 }

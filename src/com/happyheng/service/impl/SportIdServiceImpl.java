@@ -6,15 +6,16 @@ import com.happyheng.dao.SportRecordDao;
 import com.happyheng.dao.UserDao;
 import com.happyheng.dao.impl.SportRecordDaoImplement;
 import com.happyheng.dao.impl.UserDaoImplement;
+import com.happyheng.entity.Sport;
 import com.happyheng.entity.result.SportRecordResult;
 import com.happyheng.service.SportIdService;
 import com.happyheng.utils.ConnectionFactory;
 
-public class SportIdServiceImpl extends BaseService implements SportIdService{
-	
+public class SportIdServiceImpl extends BaseService implements SportIdService {
+
 	private UserDao userDao;
 	private SportRecordDao recordDao;
-	
+
 	public UserDao getUserDao() {
 		return userDao;
 	}
@@ -22,7 +23,7 @@ public class SportIdServiceImpl extends BaseService implements SportIdService{
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
-	
+
 	public SportRecordDao getRecordDao() {
 		return recordDao;
 	}
@@ -33,23 +34,28 @@ public class SportIdServiceImpl extends BaseService implements SportIdService{
 
 	@Override
 	public SportRecordResult getSportId(String userKey) {
-		Connection connection = null;
-		connection = ConnectionFactory.getInstance().makeConnection();
+		// Connection connection = null;
+		// connection = ConnectionFactory.getInstance().makeConnection();
 
 		SportRecordResult recordResult = new SportRecordResult();
 
 		try {
 
 			// 1、先使用userKey得到对应的userId
-			Integer userId = userDao.getUserId( userKey);
+			Integer userId = userDao.getUserId(userKey);
 
 			if (userId != null) {
 				// 2、给Sport表中插入userId,获取sportId
-				int sportId = recordDao.insertUserId(connection, userId);
-				
-				recordResult.setCode(RESULT_CODE_SUCCESS);
-				recordResult.setSportId(sportId);
-				return recordResult;
+				Sport sport = new Sport();
+				sport.setUserid(userId);
+				Integer insertSportResult = recordDao.insertSport(sport);
+
+				if (insertSportResult != null) {
+					recordResult.setCode(RESULT_CODE_SUCCESS);
+					recordResult.setSportId(sport.getId());
+					return recordResult;
+				}
+
 			}
 
 		} catch (Exception exception) {

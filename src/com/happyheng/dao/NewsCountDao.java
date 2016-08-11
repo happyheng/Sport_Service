@@ -1,7 +1,8 @@
 package com.happyheng.dao;
 
-import java.sql.Connection;
 import java.sql.SQLException;
+
+import org.apache.ibatis.annotations.Select;
 
 public interface NewsCountDao {
 	
@@ -12,5 +13,6 @@ public interface NewsCountDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	String getNewsReadCount(Connection connection, String id) throws SQLException;
+	@Select("select readcount from tal_news where id = #{id}")
+	public Integer getNewsReadCount(int id) throws SQLException;
 }

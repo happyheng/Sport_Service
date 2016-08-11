@@ -1,6 +1,5 @@
 package com.happyheng.dao.impl;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +22,25 @@ public class NewsDaoRedisImplement implements NewsDao {
 	public static final int CACHE_TIME = 30;
 
 	private Jedis mJedis;
+	private NewsDao newsDao;
+
+	public NewsDao getNewsDao() {
+		return newsDao;
+	}
+
+	public void setNewsDao(NewsDao newsDao) {
+		this.newsDao = newsDao;
+	}
 
 	public NewsDaoRedisImplement() {
 		mJedis = Redis.getConnection();
 	}
 
 	@Override
-	public List<News> getNewsByIndex(Connection connection, int begin, int count) throws SQLException {
+	public List<News> getNewsByIndex(int begin, int count) throws SQLException {
 
 		// 1、判断数据是否存在，不存在即填充
-		initData(connection);
+		initData();
 
 		// 2、然后取出
 		List<News> result = getNewsByIndexFromRedis(begin, count);
@@ -40,32 +48,31 @@ public class NewsDaoRedisImplement implements NewsDao {
 	}
 
 	@Override
-	public List<News> getNewsById(Connection connection, int newsId, int count) throws SQLException {
+	public List<News> getNewsById(int newsId, int count) throws SQLException {
 		// 1、判断数据是否存在，不存在即填充
-		initData(connection);
+		initData();
 
 		// 2、然后取出
 		List<News> result = getNewsByIdFromRedis(newsId, count);
 		return result;
 	}
 
-	private void initData(Connection connection) throws SQLException {
+	private void initData() throws SQLException {
 		// 1、首先判断缓存中是否有，如果有，就直接返回
 		boolean isExist = mJedis.exists(KEY_LIST);
 
 		if (!isExist) {
 			System.out.println("Redis中没有数据，将数据库数据读入缓存中");
 			// 2、如果没有，从数据库中取出，并缓存至Redis中，并设置其缓存时间
-			getDataFromRedis(connection);
+			getDataFromDao();
 			mJedis.expire(KEY_LIST, CACHE_TIME);
 		} else {
 			System.out.println("Redis中存在数据");
 		}
 	}
 
-	private void getDataFromRedis(Connection connection) throws SQLException {
-		NewsDao dbDao = new NewsDaoImplement();
-		List<News> list = dbDao.getNewsByIndex(connection, 0, CACHE_NUM);
+	private void getDataFromDao() throws SQLException {
+		List<News> list = newsDao.getNewsByIndex(0, CACHE_NUM);
 		for (News news : list) {
 			mJedis.zadd(KEY_LIST, news.getId(), JSON.toJSONString(news));
 		}

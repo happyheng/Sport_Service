@@ -9,16 +9,26 @@ import com.happyheng.cache.NewsCountCache;
  */
 public class NewsCountServiceImpl extends BaseService {
 	
+	private NewsCountCache cacheDao;
+	
+	public NewsCountCache getCacheDao() {
+		return cacheDao;
+	}
+
+	public void setCacheDao(NewsCountCache cacheDao) {
+		this.cacheDao = cacheDao;
+	}
+
 	/**
 	 * 得到对应文章的阅读数并将Count+1
 	 * @param id
 	 */
 	public String addAndGetReadCount(String id) {
-		NewsCountCache cache = new NewsCountCache();
+		//NewsCountCache cache = new NewsCountCache();
 		String readCount = "0";
 		
 		try {
-			readCount = cache.getAndAddCountFromCache(id);
+			readCount = cacheDao.getAndAddCountFromCache(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

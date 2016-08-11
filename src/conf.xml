@@ -21,6 +21,9 @@
 	<mappers>
 		<!-- 注册userMapper映射接口 -->
 		<mapper class="com.happyheng.dao.UserDao"/>
+		<mapper class="com.happyheng.dao.SportRecordDao"/>
+		<mapper class="com.happyheng.dao.NewsDao"/>
+		<mapper class="com.happyheng.dao.NewsCountDao"/>
 	</mappers>
 
 </configuration>

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
+
 import com.happyheng.entity.News;
 
 public interface NewsDao {
@@ -14,7 +16,8 @@ public interface NewsDao {
 	 * @param count
 	 * @return
 	 */
-	List<News> getNewsByIndex(Connection connection, int begin, int count)throws SQLException;
+	@Select("select * from tal_news order by id limit #{1} offset #{0}")
+	List<News> getNewsByIndex(int begin, int count)throws SQLException;
 	
 	/**
 	 * 通过id和count来得到News实体
@@ -22,5 +25,6 @@ public interface NewsDao {
 	 * @param count
 	 * @return
 	 */
-	List<News> getNewsById(Connection connection, int newsId, int count) throws SQLException;
+	@Select("select * from tal_news where id > #{0} limit #{1}")
+	List<News> getNewsById(int newsId, int count) throws SQLException;
 }
