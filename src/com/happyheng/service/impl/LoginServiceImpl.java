@@ -29,19 +29,19 @@ public class LoginServiceImpl implements LoginService{
 		Connection connection = null;
 		LoginResult result = new LoginResult();
 		
-		connection = ConnectionFactory.getInstance().makeConnection();
+		//connection = ConnectionFactory.getInstance().makeConnection();
 		
-		try {
+//		try {
 			//1、先判断是否有相应的用户名
-			int id = userDao.queryUserName(connection, userName);
-			if (id == 0) {
+			Integer id = userDao.queryUserName(userName);
+			if (id == null) {
 				result.setCode(RESULT_NULL_USERNAME);
 				return result;
 			}
 			
 			//2、在判断密码是否正确
-			int userId = userDao.queryPassWord(connection, id, passWord);
-			if (userId == 0) {
+			Integer userId = userDao.queryPassWord(id, passWord);
+			if (userId == null) {
 				result.setCode(RESULT_WRONG_PASSWORD);
 				return result;
 			}
@@ -50,18 +50,26 @@ public class LoginServiceImpl implements LoginService{
 			long currentTime  = System.currentTimeMillis();
 			String token = userId+"_"+currentTime;
 			
-			userDao.updateToken(connection, userId, token);
-			result.setCode(0);
-			result.setToken(token);
+			int updateResult = userDao.updateToken(userId, token);
+			if (updateResult == 0) {
+				result.setCode(100);
+				
+			} else {
+				result.setCode(0);
+				result.setToken(token);
+			}
 			
 			return result;
-		} catch (SQLException e) {
 			
-			e.printStackTrace();
-			
-			result.setCode(100);
-			return result;
-		}	
+//		} 
+		
+//		catch (SQLException e) {
+//			
+//			e.printStackTrace();
+//			
+//			result.setCode(100);
+//			return result;
+//		}	
 	}
 	
 }

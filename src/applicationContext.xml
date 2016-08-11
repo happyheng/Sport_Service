@@ -5,30 +5,31 @@
 
 
 	<!-- 配置bean -->
-	<bean  id="userDao" class="com.happyheng.dao.impl.UserDaoImplement"></bean>
+	<bean id="userDaoFactory" class="com.happyheng.factory.UserDaoFactory"></bean>
+	<bean id="userDao" factory-bean="userDaoFactory" factory-method="getUserDao"/>
 	<bean id="recordDao" class="com.happyheng.dao.impl.SportRecordDaoImplement"></bean>
 	<bean id="redisNewsDao" class="com.happyheng.dao.impl.NewsDaoRedisImplement"></bean>
-	
-	<bean  id="loginService" class="com.happyheng.service.impl.LoginServiceImpl">
+
+	<bean id="loginService" class="com.happyheng.service.impl.LoginServiceImpl">
 		<property name="UserDao" ref="userDao"></property>
 	</bean>
-	
+
 	<bean id="registerService" class="com.happyheng.service.impl.RegisterServiceImpl">
 		<property name="UserDao" ref="userDao"></property>
 	</bean>
-	
+
 	<bean id="sportIdService" class="com.happyheng.service.impl.SportIdServiceImpl">
 		<property name="UserDao" ref="userDao"></property>
 		<property name="RecordDao" ref="recordDao"></property>
 	</bean>
-	
+
 	<bean id="sportRecordService" class="com.happyheng.service.impl.SportRecordServiceImpl">
 		<property name="RecordDao" ref="recordDao"></property>
 	</bean>
-	
+
 	<bean id="newsService" class="com.happyheng.service.impl.NewsServiceImpl">
 		<property name="NewsDao" ref="redisNewsDao"></property>
 	</bean>
-	
+
 
 </beans>

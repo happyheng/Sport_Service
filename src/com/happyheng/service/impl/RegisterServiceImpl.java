@@ -39,7 +39,7 @@ public class RegisterServiceImpl implements RegisterService{
 			user.setPassword(passWord);
 			user.setNickname(nickName);
 
-			userDao.save(connection, user);
+			userDao.save(user);
 			
 			connection.commit();
 			return 0;

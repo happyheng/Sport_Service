@@ -20,7 +20,7 @@
 	
 	<mappers>
 		<!-- 注册userMapper映射接口 -->
-		<mapper class="com.happyheng.dao.NewUserDao"/>
+		<mapper class="com.happyheng.dao.UserDao"/>
 	</mappers>
 
 </configuration>

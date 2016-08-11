@@ -41,9 +41,9 @@ public class SportIdServiceImpl extends BaseService implements SportIdService{
 		try {
 
 			// 1、先使用userKey得到对应的userId
-			int userId = userDao.getUserId(connection, userKey);
+			Integer userId = userDao.getUserId( userKey);
 
-			if (userId != 0) {
+			if (userId != null) {
 				// 2、给Sport表中插入userId,获取sportId
 				int sportId = recordDao.insertUserId(connection, userId);
 				
