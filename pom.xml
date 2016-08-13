@@ -39,5 +39,15 @@
   		<artifactId>mybatis</artifactId>
   		<version>3.1.1</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.mybatis</groupId>
+  		<artifactId>mybatis-spring</artifactId>
+  		<version>1.1.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-dbcp</groupId>
+  		<artifactId>commons-dbcp</artifactId>
+  		<version>1.4</version>
+  	</dependency>
   </dependencies>
 </project>

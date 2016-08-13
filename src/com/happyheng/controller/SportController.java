@@ -17,19 +17,20 @@ import com.happyheng.entity.result.SportRecordResult;
 import com.happyheng.service.SportIdService;
 import com.happyheng.service.SportRecordService;
 import com.happyheng.service.impl.BaseService;
+import com.happyheng.utils.ContextUtils;
 
 @Controller
 public class SportController extends BaseController {
-	public SportController() {
-		super();
-	}
+//	public SportController() {
+//		super();
+//	}
 
 	@RequestMapping(value = "/SportId", method = RequestMethod.POST)
 	public void getSportId(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		String userKey = (String) req.getAttribute("ukey");
 
 		// 得到返回的结果
-		SportIdService service = (SportIdService) context.getBean("sportIdService");
+		SportIdService service = (SportIdService) ContextUtils.getContext().getBean("sportIdService");
 		SportRecordResult result = service.getSportId(userKey);
 
 		Map<String, Object> responseMap = new HashMap<>();
@@ -54,7 +55,7 @@ public class SportController extends BaseController {
 		float posy = ((BigDecimal) req.getAttribute("posy")).floatValue();
 		String location = (String) req.getAttribute("location");
 
-		SportRecordService service = (SportRecordService) context.getBean("sportRecordService");
+		SportRecordService service = (SportRecordService) ContextUtils.getContext().getBean("sportRecordService");
 
 		Map<String, Object> responseMap = new HashMap<>();
 		// 不为空，则说明是来插入信息并获取sportId的

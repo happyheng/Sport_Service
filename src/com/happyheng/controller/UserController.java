@@ -15,13 +15,14 @@ import com.alibaba.fastjson.JSON;
 import com.happyheng.entity.result.LoginResult;
 import com.happyheng.service.LoginService;
 import com.happyheng.service.RegisterService;
+import com.happyheng.utils.ContextUtils;
 
 @Controller
 public class UserController extends BaseController {
 
-	public UserController() {
-		super();
-	}
+//	public UserController() {
+//		super();
+//	}
 
 	@RequestMapping(value="/Register",method=RequestMethod.POST)
 	public void register(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -31,7 +32,7 @@ public class UserController extends BaseController {
 
 		System.out.println("请求的userName为" + userName + "\n请求的passWord为" + passWord + "\nnickName为" + nickName);
 
-		RegisterService service = (RegisterService) context.getBean("registerService");
+		RegisterService service = (RegisterService) ContextUtils.getContext().getBean("registerService");
 		int code = service.register(userName, passWord, nickName);
 		System.out.println("插入的code为" + code);
 
@@ -53,7 +54,7 @@ public class UserController extends BaseController {
 
 		System.out.println("请求的userName为" + userName + "\n请求的passWord为" + passWord);
 
-		LoginService service = (LoginService) context.getBean("loginService");
+		LoginService service = (LoginService) ContextUtils.getContext().getBean("loginService");
 		LoginResult loginResult = service.login(userName, passWord);
 
 		Map<String, Object> map = new HashMap<>();

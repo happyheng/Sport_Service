@@ -13,12 +13,13 @@ import com.alibaba.fastjson.JSON;
 import com.happyheng.entity.result.NewsResult;
 import com.happyheng.service.NewsService;
 import com.happyheng.service.impl.NewsCountServiceImpl;
+import com.happyheng.utils.ContextUtils;
 
 @Controller
 public class NewsController extends BaseController {
-	public NewsController() {
-		super();
-	}
+//	public NewsController() {
+//		super();
+//	}
 
 	@RequestMapping(value = "/News", method = RequestMethod.POST)
 	public void getNews(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -33,7 +34,7 @@ public class NewsController extends BaseController {
 
 		int count = (int) req.getAttribute("count");
 
-		NewsService service = (NewsService) context.getBean("newsService");
+		NewsService service = (NewsService) ContextUtils.getContext().getBean("newsService");
 		NewsResult result = service.getNews(begin, id, count);
 
 		String resultJson = JSON.toJSONString(result);
