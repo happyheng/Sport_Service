@@ -17,7 +17,7 @@
 ```
 -- User表
 create table tal_user(
-id INT(11) unsigned not null  auto_increment,
+id int(11) unsigned not null auto_increment,
 name varchar(50) not null unique,
 password varchar(50) not null,
 nickname varchar(50) not null,
@@ -28,15 +28,15 @@ primary key(id)
 
 -- 运动表
 create table tal_sport(
-id INT(11) unsigned not null  auto_increment,
+id int(11) unsigned not null auto_increment,
 userid int(11) unsigned not null,
 primary key(id)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 -- 运动信息表
 create table tal_sport_message(
-id INT(11) unsigned not null  auto_increment,
-sportId INT(11) unsigned,
+id int(11) unsigned not null auto_increment,
+sportId int(11) unsigned,
 posx float,
 posy float,
 stime TIMESTAMP,
@@ -46,7 +46,7 @@ primary key (id)
 
 -- 资讯表
 create table tal_news(
-id INT(11) unsigned not null  auto_increment,
+id int(11) unsigned not null auto_increment,
 name varchar(50) not null,
 simplecontent varchar(100),
 thumbnail varchar(255),
@@ -57,7 +57,7 @@ primary key (id)
 
 ```
 ### 数据库连接配置
-连接数据库的配置信息存储在项目的/src/dbconfig.properties中，可以将其改成自己的数据库连接配置。
+连接数据库的配置信息存储在项目的/src/dbconfig.properties中，需将其改成自己的数据库连接配置。
 
 需要注意的是，本项目使用Meven进行项目构建，所以在运行项目之前需要确保Maven可以正常使用。
 
