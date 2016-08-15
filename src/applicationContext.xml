@@ -91,6 +91,10 @@
 	<bean id="newsCountService" class="com.happyheng.service.impl.NewsCountServiceImpl">
 		<property name="cacheDao" ref="newsCountCacheDao"></property>
 	</bean>
+	
+	<bean id="sportListService" class="com.happyheng.service.impl.SportListServiceImpl">
+		<property name="RecordDao" ref="recordDao"></property>
+	</bean>
 
 
 </beans>

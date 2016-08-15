@@ -44,24 +44,29 @@ public class VerifyFilter implements Filter {
 			throws IOException, ServletException {
 
 		String securityString = request.getParameter(KEY_ENCRYPT);
-		String decryptString = secret.decryption(key, securityString);
-
-		if (securityString != null) {
-			System.out.println("获取的加密String为" + decryptString);
-
-			//JSONObject requestJson = JSON.parseObject(URLDecoder.decode(securityString, "UTF8"));
-			JSONObject requestJson = JSON.parseObject(decryptString);
-			for (String key : requestJson.keySet()) {
-				request.setAttribute(key, requestJson.get(key));
-				System.out.println("取得的数据key----"+key+"----value为"+ requestJson.get(key));
-			}
-
-			// 验证通过
+		if (securityString == null) {
 			chain.doFilter(request, response);
 		} else {
-			response.getWriter().println("验证失败");
-		}
+			String decryptString = secret.decryption(key, securityString);
 
+			if (decryptString != null) {
+				System.out.println("获取的加密String为" + decryptString);
+
+				//JSONObject requestJson = JSON.parseObject(URLDecoder.decode(securityString, "UTF8"));
+				JSONObject requestJson = JSON.parseObject(decryptString);
+				for (String key : requestJson.keySet()) {
+					request.setAttribute(key, requestJson.get(key));
+					System.out.println("取得的数据key----"+key+"----value为"+ requestJson.get(key));
+				}
+
+				// 验证通过
+				chain.doFilter(request, response);
+			} else {
+				response.getWriter().println("验证失败");
+			}
+
+		}
+		
 	}
 
 	@Override

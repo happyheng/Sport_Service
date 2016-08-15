@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSON;
+import com.happyheng.entity.result.SportListResult;
 import com.happyheng.entity.result.SportRecordResult;
 import com.happyheng.service.SportIdService;
+import com.happyheng.service.SportListService;
 import com.happyheng.service.SportRecordService;
 import com.happyheng.service.impl.BaseService;
 import com.happyheng.utils.ContextUtils;
@@ -69,4 +71,20 @@ public class SportController extends BaseController {
 		printWriter.write(result);
 		printWriter.close();
 	}
+	
+	@RequestMapping(value = "/SportList", method = RequestMethod.POST)
+	public void getSportList(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		String userKey = (String) req.getAttribute("userkey");
+		
+		SportListService service = (SportListService)ContextUtils.getContext().getBean("sportListService");
+		SportListResult result = service.getSportList(userKey);
+		
+		String resultJson = JSON.toJSONString(result);
+		System.out.println("结果为" + resultJson);
+
+		PrintWriter printWriter = resp.getWriter();
+		printWriter.write(resultJson);
+		printWriter.close();
+	}
+	
 }

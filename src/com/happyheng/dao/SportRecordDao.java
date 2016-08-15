@@ -46,4 +46,13 @@ public interface SportRecordDao {
 	 */
 	@Select("select * from tal_sport_message where ")
 	public List<SportRecord> queryRecordList(int id) throws SQLException;
+	
+	/**
+	 * 根据用户的userKey查出用户的sportId
+	 * @param userKey
+	 * @return
+	 * @throws SQLException
+	 */
+	@Select("select id from tal_sport where userid in (select id from tal_user where token = #{userKey})")
+	public List<Integer> getSportList(String userKey) throws SQLException;
 }

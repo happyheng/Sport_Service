@@ -12,6 +12,8 @@ import com.happyheng.utils.ConnectionFactory;
 
 public class NewsServiceImpl extends BaseService implements NewsService{
 	
+	public static final String BASE_NEWS_URL = "http://www.happyheng.top:8080/Sport/NewsDetail?id=";
+	
 	private NewsDao newsDao;
 	
 	public NewsDao getNewsDao() {
@@ -29,15 +31,20 @@ public class NewsServiceImpl extends BaseService implements NewsService{
 
 		try {
 
-			List<News> news;
+			List<News> newsList;
 			if (id != 0) {
-				news = newsDao.getNewsById(id, count);
+				newsList = newsDao.getNewsById(id, count);
 			} else {
-				news = newsDao.getNewsByIndex(begin, count);
+				newsList = newsDao.getNewsByIndex(begin, count);
+			}
+			
+			//为所有的news添加url
+			for(News news:newsList){
+				news.setUrl(BASE_NEWS_URL+news.getId());
 			}
 			
 			result.setCode(RESULT_CODE_SUCCESS);
-			result.setData(news);
+			result.setData(newsList);
 		} catch (SQLException e) {
 			result.setCode(RESULT_CODE_ERROR);
 			e.printStackTrace();

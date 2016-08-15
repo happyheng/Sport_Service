@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.happyheng.entity.result.NewsResult;
@@ -46,15 +47,18 @@ public class NewsController extends BaseController {
 		printWriter.close();
 	}
 	
-	@RequestMapping(value = "/NewsDetail", method = RequestMethod.POST)
-	public void getNewsDetail(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	@RequestMapping(value = "/NewsDetail")
+	public ModelAndView getNewsDetail(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
 		String newsId = req.getParameter("id");
 
-		NewsCountServiceImpl service = new NewsCountServiceImpl();
+		NewsCountServiceImpl service = (NewsCountServiceImpl)ContextUtils.getContext().getBean("newsCountService");
 		String count = service.addAndGetReadCount(newsId);
+		req.setAttribute("read", count);
 
 		System.out.println("输出的结果为" + count);
+		ModelAndView view = new ModelAndView("article");
+		return view;
 	}
 	
 }
