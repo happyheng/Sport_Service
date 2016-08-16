@@ -95,6 +95,10 @@
 	<bean id="sportListService" class="com.happyheng.service.impl.SportListServiceImpl">
 		<property name="RecordDao" ref="recordDao"></property>
 	</bean>
+	
+	<bean id="sportMessageService" class="com.happyheng.service.impl.SportMessageImpl">
+		<property name="RecordDao" ref="recordDao"></property>
+	</bean>
 
 
 </beans>

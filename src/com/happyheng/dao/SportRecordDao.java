@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.omg.CORBA.INTERNAL;
 
+import com.happyheng.entity.Location;
 import com.happyheng.entity.Sport;
 import com.happyheng.entity.SportRecord;
 
@@ -55,4 +56,14 @@ public interface SportRecordDao {
 	 */
 	@Select("select id from tal_sport where userid in (select id from tal_user where token = #{userKey})")
 	public List<Integer> getSportList(String userKey) throws SQLException;
+	
+	/**
+	 * 根据运动id查出所有的运动信息
+	 * @param sportId
+	 * @return
+	 * @throws SQLException
+	 */
+	@Select("select posx,posy from tal_sport_message where sportId = #{sportId}")
+	public List<Location> getSportMessage(String sportId) throws SQLException;
+	
 }
