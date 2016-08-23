@@ -34,7 +34,7 @@ public class SportRecordServiceImpl extends BaseService implements SportRecordSe
 	 * @param location
 	 */
 	@Override
-	public int record(int sportId, float posx, float posy, String location) {
+	public int record(int sportId, double posx, double posy, String location) {
 
 		try {
 			SportRecord record = new SportRecord();

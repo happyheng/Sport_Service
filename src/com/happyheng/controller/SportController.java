@@ -55,8 +55,8 @@ public class SportController extends BaseController {
 	@RequestMapping(value = "/Record", method = RequestMethod.POST)
 	public void record(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		int sportId = (int) req.getAttribute("id");
-		float posx = ((BigDecimal) req.getAttribute("posx")).floatValue();
-		float posy = ((BigDecimal) req.getAttribute("posy")).floatValue();
+		double posx = ((BigDecimal) req.getAttribute("posx")).doubleValue();
+		double posy = ((BigDecimal) req.getAttribute("posy")).doubleValue();
 		String location = (String) req.getAttribute("location");
 
 		SportRecordService service = (SportRecordService) ContextUtils.getContext().getBean("sportRecordService");

@@ -2,8 +2,8 @@ package com.happyheng.entity;
 
 public class SportRecord extends IdEntity {
 	private int sportId;
-	private float posX;
-	private float posY;
+	private double posX;
+	private double posY;
 	private long time;
 	private String location;
 	
@@ -14,18 +14,19 @@ public class SportRecord extends IdEntity {
 		this.sportId = sportId;
 	}
 	
-	public float getPosX() {
+	public double getPosX() {
 		return posX;
 	}
-	public void setPosX(float posX) {
+	public void setPosX(double posX) {
 		this.posX = posX;
 	}
-	public float getPosY() {
+	public double getPosY() {
 		return posY;
 	}
-	public void setPosY(float posY) {
+	public void setPosY(double posY) {
 		this.posY = posY;
 	}
+	
 	public long getTime() {
 		return time;
 	}

@@ -2,21 +2,23 @@ package com.happyheng.entity;
 
 public class Location {
 	
-	private	float posx;
-	private float posy;
-	
-	public float getPosx() {
+	private	double posx;
+	private double posy;
+
+	public double getPosx() {
 		return posx;
 	}
-	public void setPosx(float posx) {
+
+	public void setPosx(double posx) {
 		this.posx = posx;
 	}
-	public float getPosy() {
+
+	public double getPosy() {
 		return posy;
 	}
-	public void setPosy(float posy) {
+
+	public void setPosy(double posy) {
 		this.posy = posy;
 	}
-	
 	
 }
