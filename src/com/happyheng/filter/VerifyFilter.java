@@ -52,7 +52,6 @@ public class VerifyFilter implements Filter {
 			if (decryptString != null) {
 				System.out.println("获取的加密String为" + decryptString);
 
-				//JSONObject requestJson = JSON.parseObject(URLDecoder.decode(securityString, "UTF8"));
 				JSONObject requestJson = JSON.parseObject(decryptString);
 				for (String key : requestJson.keySet()) {
 					request.setAttribute(key, requestJson.get(key));

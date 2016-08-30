@@ -3,8 +3,6 @@ package com.happyheng.test;
 import java.sql.Connection;
 
 import com.happyheng.dao.UserDao;
-import com.happyheng.dao.impl.UserDaoImplement;
-import com.happyheng.entity.User;
 import com.happyheng.utils.ConnectionFactory;
 
 public class ConnectionTest {

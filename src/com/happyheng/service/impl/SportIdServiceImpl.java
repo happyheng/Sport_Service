@@ -1,15 +1,10 @@
 package com.happyheng.service.impl;
 
-import java.sql.Connection;
-
 import com.happyheng.dao.SportRecordDao;
 import com.happyheng.dao.UserDao;
-import com.happyheng.dao.impl.SportRecordDaoImplement;
-import com.happyheng.dao.impl.UserDaoImplement;
 import com.happyheng.entity.Sport;
 import com.happyheng.entity.result.SportRecordResult;
 import com.happyheng.service.SportIdService;
-import com.happyheng.utils.ConnectionFactory;
 
 public class SportIdServiceImpl extends BaseService implements SportIdService {
 
