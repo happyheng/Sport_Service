@@ -30,13 +30,18 @@
 	<!-- 此为生成sqlSessionFactory对象 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:com/happyheng/**/*Mapper.xml"/>
 	</bean>
 
-	<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<!-- <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.happyheng.dao.UserDao"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>-->
+	
+	<bean id="userDao" class="com.happyheng.dao.impl.UserDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
-
+	
 	<bean id="recordDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.happyheng.dao.SportRecordDao"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>

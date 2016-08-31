@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.happyheng.mapper.userMapper">
+
+	<!-- 将User保存至数据库中 -->
+	<insert id="saveUser" parameterType="com.happyheng.entity.User">
+		insert into tal_user (name,password,nickname) values (#{name},#{password},#{nickname})
+	</insert>
+
+	<!-- 查询数据库中是否有对应的UserName，如果有，返回对应id，没有，返回0 -->
+	<select id="selectUserByName" parameterType="java.lang.String"  resultType="int">
+		select id from tal_user where name = #{name}
+	</select>
+	
+	<!-- 根据User查询数据库中相应的id的password是否正确。如果正确，返回对应的id，否则返回0 -->
+	<select id="selectUserByPassword" parameterType="Map" resultType="int">
+		select id from tal_user where id=#{id} and password = #{password}
+	</select>
+	
+	<!-- 向指定Id的User中更新token -->
+	<update id="updateUserToken" parameterType="Map">
+		update tal_user set token = #{token} where id=#{id}
+	</update>
+	
+	<!-- 根据token获取到用户的id，如果没有，返回0 -->
+	<select id="selectUserByToken" parameterType="String" resultType="int">
+		select id from tal_user where token = #{token}
+	</select>
+	
+</mapper>

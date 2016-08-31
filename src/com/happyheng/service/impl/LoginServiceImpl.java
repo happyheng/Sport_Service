@@ -29,9 +29,6 @@ public class LoginServiceImpl implements LoginService{
 		Connection connection = null;
 		LoginResult result = new LoginResult();
 		
-		//connection = ConnectionFactory.getInstance().makeConnection();
-		
-//		try {
 			//1、先判断是否有相应的用户名
 			Integer id = userDao.queryUserName(userName);
 			if (id == null) {
@@ -60,16 +57,6 @@ public class LoginServiceImpl implements LoginService{
 			}
 			
 			return result;
-			
-//		} 
-		
-//		catch (SQLException e) {
-//			
-//			e.printStackTrace();
-//			
-//			result.setCode(100);
-//			return result;
-//		}	
 	}
 	
 }

@@ -19,6 +19,8 @@
 	</environments>
 	
 	<mappers>
+		<!-- 注册Mapper xml文件 -->
+		<mapper resource="com/happyheng/mapper/userMapper.xml"/>
 		<!-- 注册userMapper映射接口 -->
 		<mapper class="com.happyheng.dao.UserDao"/>
 		<mapper class="com.happyheng.dao.SportRecordDao"/>
