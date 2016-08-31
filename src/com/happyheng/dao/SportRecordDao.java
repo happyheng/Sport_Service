@@ -1,14 +1,11 @@
 package com.happyheng.dao;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
-import org.omg.CORBA.INTERNAL;
-
 import com.happyheng.entity.Location;
 import com.happyheng.entity.Sport;
 import com.happyheng.entity.SportRecord;

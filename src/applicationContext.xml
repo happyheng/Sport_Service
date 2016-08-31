@@ -33,36 +33,21 @@
 		<property name="mapperLocations" value="classpath*:com/happyheng/**/*Mapper.xml"/>
 	</bean>
 
-	<!-- <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.happyheng.dao.UserDao"/>
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>-->
-	
 	<bean id="userDao" class="com.happyheng.dao.impl.UserDaoImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
-	<bean id="recordDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.happyheng.dao.SportRecordDao"/>
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-
-	<bean id="newsDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.happyheng.dao.NewsDao"/>
+	<bean id="recordDao" class="com.happyheng.dao.impl.SportRecordDaoImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
-	<bean id="countDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.happyheng.dao.NewsCountDao"/>
+	<bean id="newsDao" class="com.happyheng.dao.impl.NewsDaoImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
-	<!-- 配置bean -->
-	<!-- <bean id="daoFactory" class="com.happyheng.factory.DaoFactory"></bean>
-	<bean id="userDao" factory-bean="daoFactory" factory-method="getUserDao" /> -->
-	<!-- <bean id="recordDao" factory-bean="daoFactory" factory-method="getSportRecordDao"></bean> -->
-	<!-- <bean id="newsDao" factory-bean="daoFactory" factory-method="getNewsDao"></bean> -->
-	<!-- <bean id="countDao" factory-bean="daoFactory" factory-method="getNewsCountDao"></bean> -->
+	<bean id="countDao" class = "com.happyheng.dao.impl.NewsCountDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
 
 	<bean id="redisNewsDao" class="com.happyheng.dao.impl.NewsDaoRedisImplement">
 		<property name="newsDao" ref="newsDao"></property>

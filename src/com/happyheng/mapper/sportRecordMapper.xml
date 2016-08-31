@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.happyheng.mapper.sportRecordMapper">
+
+	<!-- 将userId插入到用户运动表中，获取自增的运动id -->
+	<insert id="insertSport" parameterType="com.happyheng.entity.Sport" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tal_sport (userid) values (#{userid})
+	</insert>
+
+	<!-- 将SportRecord保存至数据库中 -->
+	<insert id="addSportMessage" parameterType="com.happyheng.entity.SportRecord">
+		INSERT INTO tal_sport_message (sportId,posx,posy) VALUES (#{sportId},#{posX},#{posY})
+	</insert>
+	
+	<!-- 根据用户的id获取对已经的运动的所有信息（关联表查询） -->
+	<select id="queryRecordList" parameterType="int" resultType="com.happyheng.entity.SportRecord">
+		SELECT * FROM tal_sport_message WHERE sportId in (SELECT id FROM tal_sport WHERE userid = #{userid})
+	</select>
+	
+	
+	<!-- 根据用户的userKey查出用户的sportId -->
+	<select id="getSportList" parameterType="String" resultType="int">
+		SELECT id FROM tal_sport WHERE userid = (SELECT id FROM tal_user WHERE token = #{token})
+	</select>
+	
+	<!-- 根据运动id查出所有的运动信息 -->
+	<select id="getSportMessage" parameterType="int" resultType="com.happyheng.entity.Location">
+		SELECT posx,posy FROM tal_sport_message WHERE sportId = #{sportId}
+	</select>
+	
+</mapper>

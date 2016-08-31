@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.happyheng.mapper.NewsMapper">
+
+	<!-- 通过开始位置和count来得到News实体 -->
+	<select id="selectNewsByIndex" parameterType="Map" resultType="com.happyheng.entity.News">
+		SELECT * FROM tal_news ORDER BY id DESC LIMIT #{count} OFFSET #{begin}
+	</select>
+	
+	<select id="selectNewsById" parameterType="Map" resultType="com.happyheng.entity.News">
+		SELECT * FROM tal_news WHERE id &lt; #{id} ORDER BY id DESC LIMIT #{count}
+	</select>
+	
+	<select id="selectNewsCount" parameterType="int" resultType="int">
+		SELECT readcount FROM tal_news WHERE id = #{id}
+	</select>
+	
+</mapper>

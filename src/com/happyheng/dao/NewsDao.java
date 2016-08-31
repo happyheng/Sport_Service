@@ -1,6 +1,5 @@
 package com.happyheng.dao;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -27,4 +26,6 @@ public interface NewsDao {
 	 */
 	@Select("select * from tal_news where id > #{0} limit #{1}")
 	List<News> getNewsById(int newsId, int count) throws SQLException;
+	
+	
 }
